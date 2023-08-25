@@ -6,7 +6,7 @@ var app = express();
 var Collection = require('./models/collection')
 
 var PORT = 8081;
-var HOST_NAME = 'mongodb+srv://bidify:Bidify1!@cluster0.ksdef.mongodb.net/Bidify?retryWrites=true&w=majority';
+var HOST_NAME = process.env.mongoDB;
 // var DATABASE_NAME = 'Bidify';
 
 mongoose.connect(HOST_NAME).catch(error => console.error("error", error.message));
