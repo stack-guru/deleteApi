@@ -1,16 +1,22 @@
 var express = require('express')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
+const dotenv = require('dotenv')
+const cors = require('cors');
+
+dotenv.config()
 
 var app = express();
 var Collection = require('./models/collection')
 
-var PORT = 8081;
-var HOST_NAME = 'mongodb+srv://bidify:Bidify1!@cluster0.ksdef.mongodb.net/Bidify?retryWrites=true&w=majority';
+var PORT = process.env.PORT;
+var HOST_NAME = process.env.MONGODB_URL;
 // var DATABASE_NAME = 'Bidify';
 
 mongoose.connect(HOST_NAME).catch(error => console.error("error", error.message));
-
+app.use(cors({
+  origin: '*'
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
